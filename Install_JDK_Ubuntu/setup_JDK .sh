@@ -1,4 +1,6 @@
 #! /bin/bash
+#针对不同版本变更JAVA_VERSIONNAME，以及外部压缩包文件名JAVA_ZIPNAME即可
+#以用户权限执行
 
 CURDIR=$(cd "$(dirname "$0")"; pwd)
 
