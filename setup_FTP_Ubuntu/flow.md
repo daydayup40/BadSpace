@@ -14,6 +14,7 @@ sudo apt-get install vsftpd
 ```
 su
 mkdir /home/ftp
+chown myftp -c /home/ftp
 ```
 
 ## 3. 新建FTP用户并设置密码以及工作目录
