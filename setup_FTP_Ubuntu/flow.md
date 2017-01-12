@@ -1,5 +1,5 @@
 # ubuntu上配置FTP
-## first one
+## first one although great
 
 ## 1. 首先用命令检查是否安装了vsftpd
 
