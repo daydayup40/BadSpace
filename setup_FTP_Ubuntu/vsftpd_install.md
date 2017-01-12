@@ -33,8 +33,11 @@ vi /etc/vsftpd.conf
 设置属性值
 
 anonymous_enable=NO
+
 local_enable=YES
+
 write_enable =YES
+
 anon_upload_enable=YES
 
 保存返回
