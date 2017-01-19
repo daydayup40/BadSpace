@@ -1,0 +1,50 @@
+# matplotlib
+## 1. 画二位坐标图
+
+```pythone
+% matplotlib inline
+import matplotlib.pyplot as plt
+
+#创建一个初始化函数
+def runplt():
+  plt.figure()
+  plt.title('标题')
+  plt.xlabel('横坐标名称')
+  plt.ylabel('纵坐标名称')
+  plt.axis([0, 25, 0, 25]) #坐标显示范围
+  plt.grid( True ) #是否打印网格:True打印
+  return plt
+
+plt = runplt()
+x = [[6], [8], [10], [14], [18],[2]]
+y = [[7], [9], [13], [17.5], [18],[2]]
+plt.plot(x, y, 'k.')
+plt.show()
+```
+其中plot方法：   
+1，2参数为横纵坐标点向量组;   
+3参数首字符表示颜色,b=蓝色、k=黑色、g=绿色...   
+3参数第二字节表示画图方法:    
+'.'=画点   
+'-'=连线   
+'-.'=虚线连线
+
+# scikit-learn
+## 1. 一元线性回归
+```pythone
+from sklearn.linear_model import LinearRegression
+# 创建并拟合模型
+model = LinearRegression()
+
+x = [[6], [8], [10], [14], [18],[2]]
+y = [[7], [9], [13], [17.5], [18],[2]]
+model.fit(x, y)
+
+ret = model.predict([[12],[3]])
+
+print(' 预测12=%.2f ; 3=%.2f' %(ret[0] ,ret[1]))
+
+#预测12=13.57 ; 3=3.97
+```
+
+.............
