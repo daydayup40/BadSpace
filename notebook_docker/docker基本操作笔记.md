@@ -49,9 +49,21 @@ cat export.tar |  docker import - XXX/YYY:v1.0
 #查看所有已经建立的容器
 docker ps -a
 
-#启动停止重启一个容器
+#启动、停止、重启、强制关闭一个容器
 docker start <容器ID or 容器名>
 docker stop <容器ID or 容器名>
 docker restart <容器ID or 容器名>
+docker kill <容器ID or 容器名>
 
+#启动创建一个容器
+docker run -it --name <容器名> -p 1111:8888 -v /home/user/xx:/yy XXX/YYY /bin/bash
+#--name:为容器命名
+#-v:使本地一个文件目录与容器中的一个路径共享统一目录数据
+#-p:将容器中系统的一个端口映射为本地的一个端口
+
+#重新登录一个正在执行的容器
+docker attach <容器ID or 容器名>
 ```
+
+_save/load ; export/import的关系_
+![](docker_存储关系.jpg)
