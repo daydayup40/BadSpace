@@ -1,4 +1,4 @@
-__在虚拟机环境中配置一个1+3的hadoop+spark+hbase的环境__
+___在虚拟机环境中配置一个1+3的hadoop+spark+hbase的环境___
 
 [A] 所有主机均需要执行   
 [M] master主机需要进行的安装   
