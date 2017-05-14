@@ -1,4 +1,4 @@
-// test_03.cpp : ¶¨Òå¿ØÖÆÌ¨Ó¦ÓÃ³ÌÐòµÄÈë¿Úµã¡£
+// test_03.cpp : å®šä¹‰æŽ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ã€‚
 //
 /*
 
@@ -45,21 +45,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	g_lpbSecBuf = new BYTE[g_dwBytesPerSec] ;
 	dwRead = GetDiskData32( g_hDisk , g_dwBytesPerSec , g_lpbSecBuf , (DWORD)0 ) ;
 
-	//»ñµÃBPB
+	//èŽ·å¾—BPB
 	NTFS_BPB	stNtfsBpb = {0} ;
 	memcpy( (LPBYTE)&stNtfsBpb , g_lpbSecBuf , sizeof(NTFS_BPB) ) ;
 
-	//ÐÞÕýsec×Ö½ÚÊý
+	//ä¿®æ­£secå­—èŠ‚æ•°
 	g_dwBytesPerSec = stNtfsBpb.bytesPerSec ;
 	delete [] g_lpbSecBuf ;	g_lpbSecBuf = new BYTE[g_dwBytesPerSec] ;
 
 	MFT_HEADER	stMFTHeader[16] = {0} ;
-	//»ñµÃµÚÒ»Ìõ MFT Ïî:  $MFT
+	//èŽ·å¾—ç¬¬ä¸€æ¡ MFT é¡¹:  $MFT
 	g_dwBytesPerClu = g_dwBytesPerSec * stNtfsBpb.SecsPerClu ;
 	dwRead = GetDiskData64( g_hDisk , g_dwBytesPerSec , g_lpbSecBuf , g_dwBytesPerClu * stNtfsBpb.MFT_startClu ) ;
 	memcpy( (LPBYTE)&(stMFTHeader[0]) , g_lpbSecBuf , sizeof(MFT_HEADER) ) ;
 
-	g_dwBytePerMFTRecord = stMFTHeader[0].maxLen ;		//ÐÞÕý
+	g_dwBytePerMFTRecord = stMFTHeader[0].maxLen ;		//ä¿®æ­£
 	g_lpbMFTRecord = new BYTE[g_dwBytePerMFTRecord] ;
 
 	DWORD	dwGetFileLen = 0 ;
@@ -118,7 +118,7 @@ int _tmain(int argc, _TCHAR* argv[])
 						memcpy( lpGetFileData , ((LPBYTE)pNtfsAttr) + pNtfsAttr->com.Resident.StreamOffset , dwGetFileLen ) ;
 					}
 
-					//´æÎÄ¼þ
+					//å­˜æ–‡ä»¶
 					CHAR	szFilePath[1024] = {0} ;
 					if ( blNeedSam )	sprintf( szFilePath , "c:\\users\\public\\SAM_r%I64X" , dw64Index ) ;
 					else	sprintf( szFilePath , "c:\\users\\public\\SYSTEM_r%I64X" , dw64Index ) ;
@@ -172,38 +172,38 @@ int _tmain(int argc, _TCHAR* argv[])
 	g_lpbSecBuf = new BYTE[g_dwBytesPerSec] ;
 	dwRead = GetDiskData32( g_hDisk , g_dwBytesPerSec , g_lpbSecBuf , (DWORD)0 ) ;
 
-	//»ñµÃBPB
+	//èŽ·å¾—BPB
 	NTFS_BPB	stNtfsBpb = {0} ;
 	memcpy( (LPBYTE)&stNtfsBpb , g_lpbSecBuf , sizeof(NTFS_BPB) ) ;
 	
-	//ÐÞÕýsec×Ö½ÚÊý
+	//ä¿®æ­£secå­—èŠ‚æ•°
 	g_dwBytesPerSec = stNtfsBpb.bytesPerSec ;
 	delete [] g_lpbSecBuf ;	g_lpbSecBuf = new BYTE[g_dwBytesPerSec] ;
 
 	MFT_HEADER	stMFTHeader[16] = {0} ;
-	//»ñµÃµÚÒ»Ìõ MFT Ïî:  $MFT
+	//èŽ·å¾—ç¬¬ä¸€æ¡ MFT é¡¹:  $MFT
 	g_dwBytesPerClu = g_dwBytesPerSec * stNtfsBpb.SecsPerClu ;
 	dwRead = GetDiskData64( g_hDisk , g_dwBytesPerSec , g_lpbSecBuf , g_dwBytesPerClu * stNtfsBpb.MFT_startClu ) ;
 	memcpy( (LPBYTE)&(stMFTHeader[0]) , g_lpbSecBuf , sizeof(MFT_HEADER) ) ;
-	g_dwBytePerMFTRecord = stMFTHeader[0].maxLen ;		//ÐÞÕý
+	g_dwBytePerMFTRecord = stMFTHeader[0].maxLen ;		//ä¿®æ­£
 	g_lpbMFTRecord = new BYTE[g_dwBytePerMFTRecord] ;
 	dwRead = GetDiskData64( g_hDisk , g_dwBytePerMFTRecord , g_lpbMFTRecord , g_dwBytesPerClu * stNtfsBpb.MFT_startClu ) ;	//0 MFT
 	dwRead = GetDiskData64( g_hDisk , g_dwBytePerMFTRecord , g_lpbMFTRecord ) ;	//1 MFTMirr
 	dwRead = GetDiskData64( g_hDisk , g_dwBytePerMFTRecord , g_lpbMFTRecord ) ;	//2 LogFile
 	dwRead = GetDiskData64( g_hDisk , g_dwBytePerMFTRecord , g_lpbMFTRecord ) ;	//3 Volume
 	dwRead = GetDiskData64( g_hDisk , g_dwBytePerMFTRecord , g_lpbMFTRecord ) ;	//4 AttrDef
-	dwRead = GetDiskData64( g_hDisk , g_dwBytePerMFTRecord , g_lpbMFTRecord ) ;	//5 ¸ùÄ¿Â¼
+	dwRead = GetDiskData64( g_hDisk , g_dwBytePerMFTRecord , g_lpbMFTRecord ) ;	//5 æ ¹ç›®å½•
 
 
 	PNTFS_ATTRIBUTES	pNtfsAttr = (PNTFS_ATTRIBUTES)(g_lpbMFTRecord + sizeof(MFT_HEADER)) ;
 	while ( pNtfsAttr->Type != 0xFFFFFFFF )	{
 		printf( "type:%X\n" , pNtfsAttr->Type ) ;
-// 		if ( pNtfsAttr->NonResidentFiag == 1 )	{	//·Ç³£×¤ÊôÐÔ
+// 		if ( pNtfsAttr->NonResidentFiag == 1 )	{	//éžå¸¸é©»å±žæ€§
 // 			//pNtfsAttr->CCommon.CNonResident.StartVCN ;
 // 			//NTFS_ATTRIBUTES::CCommon::CNonResident*	lpCNonResident = (NTFS_ATTRIBUTES::CCommon::CNonResident*)(((LPBYTE)pNtfsAttr) + pNtfsAttr->ContentOffset) ;
 // // 			printf( "aa\n" ) ;
 // 		}
-// 		else	{									//³£×¤ÊôÐÔ
+// 		else	{									//å¸¸é©»å±žæ€§
 // 			//pNtfsAttr->CCommon.CResident.StreamLength ;
 // 			//NTFS_ATTRIBUTES::CCommon::CResident*	lpCResident = (NTFS_ATTRIBUTES::CCommon::CResident*)(((LPBYTE)pNtfsAttr) + pNtfsAttr->ContentOffset) ;
 // // 			printf( "aa\n" ) ;
